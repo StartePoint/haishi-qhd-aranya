@@ -5,6 +5,7 @@ miniprogram_npm/
 *.log
 .env
 .env.*
+!.env.example
 .idea/
 .vscode/
 .worktrees/
