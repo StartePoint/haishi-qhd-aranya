@@ -66,6 +66,8 @@ async function home() {
     announcementContent: cfg.announcementContent || '',
     nextPurchaseDate: cfg.nextPurchaseDate || '',
     cutoffText: cfg.cutoffText || '',
+    customerWechat: cfg.customerWechat || '',
+    customerWorkWechatUrl: cfg.customerWorkWechatUrl || '',
     recommended: items
   })
 }

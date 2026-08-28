@@ -1,3 +1,32 @@
 .page {
-  padding: 32rpx;
+  padding: 24rpx;
+}
+.card {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 16rpx;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16rpx;
+}
+.name {
+  font-weight: 600;
+  flex: 1;
+}
+.status {
+  color: #c45c26;
+  font-size: 24rpx;
+}
+.meta {
+  margin-top: 8rpx;
+  color: #999;
+  font-size: 24rpx;
+}
+.empty {
+  text-align: center;
+  color: #999;
+  padding: 80rpx 0;
 }

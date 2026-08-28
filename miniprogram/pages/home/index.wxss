@@ -1,3 +1,90 @@
 .page {
-  padding: 32rpx;
+  padding: 32rpx 28rpx 48rpx;
+}
+.brand-name {
+  font-size: 56rpx;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+.brand-sub {
+  margin-top: 8rpx;
+  font-size: 28rpx;
+  color: #666;
+}
+.announce {
+  margin-top: 28rpx;
+  padding: 20rpx 24rpx;
+  background: #fff4ee;
+  border-radius: 12rpx;
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+.announce-label {
+  color: #c45c26;
+  font-weight: 600;
+}
+.announce-text {
+  flex: 1;
+  color: #444;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.section-title {
+  margin: 36rpx 0 16rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+}
+.purchase-card {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 28rpx;
+}
+.purchase-date {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #c45c26;
+}
+.purchase-cut {
+  margin-top: 8rpx;
+  color: #666;
+  font-size: 24rpx;
+}
+.rec-item {
+  display: flex;
+  gap: 20rpx;
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 20rpx;
+  margin-bottom: 16rpx;
+}
+.rec-cover {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 12rpx;
+  background: #eee;
+}
+.rec-name {
+  font-size: 28rpx;
+  font-weight: 500;
+}
+.rec-price {
+  margin-top: 12rpx;
+  color: #c45c26;
+  font-weight: 600;
+}
+.rec-sub {
+  margin-top: 6rpx;
+  color: #999;
+  font-size: 22rpx;
+}
+.empty {
+  color: #999;
+  padding: 24rpx 0;
+}
+.link {
+  margin-top: 40rpx;
+  text-align: center;
+  color: #c45c26;
 }

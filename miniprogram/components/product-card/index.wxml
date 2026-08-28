@@ -1,0 +1,8 @@
+<view class="card" bindtap="onTap">
+  <image class="cover" src="{{item.cover}}" mode="aspectFill" />
+  <view class="meta">
+    <view class="name">{{item.name}}</view>
+    <view class="price">{{item.priceSummary.mainText}}</view>
+    <view class="sub">{{item.priceSummary.subText}}</view>
+  </view>
+</view>

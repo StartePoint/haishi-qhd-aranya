@@ -1,3 +1,39 @@
 .page {
-  padding: 32rpx;
+  min-height: 100vh;
+}
+.header {
+  background: #c45c26;
+  padding: 48rpx 32rpx 56rpx;
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+  color: #fff;
+}
+.avatar {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36rpx;
+}
+.name {
+  font-size: 32rpx;
+  font-weight: 600;
+}
+.menu {
+  margin: 24rpx;
+  background: #fff;
+  border-radius: 16rpx;
+  overflow: hidden;
+}
+.item {
+  padding: 32rpx 28rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+  font-size: 28rpx;
+}
+.item:last-child {
+  border-bottom: none;
 }

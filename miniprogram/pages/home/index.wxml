@@ -1,1 +1,40 @@
-<view class="page">{{title}}</view>
+<view class="page">
+  <view class="brand">
+    <view class="brand-name">海拾</view>
+    <view class="brand-sub">阿那亚代购地</view>
+  </view>
+
+  <view class="announce" wx:if="{{announcementTitle || announcementContent}}" bindtap="onTapAnnounce">
+    <text class="announce-label">公告</text>
+    <text class="announce-text">{{announcementTitle || announcementContent}}</text>
+  </view>
+
+  <view class="purchase">
+    <view class="section-title">采购提醒</view>
+    <view class="purchase-card">
+      <view class="purchase-date">{{nextPurchaseDate || '待公布'}}</view>
+      <view class="purchase-cut">{{cutoffText || '截单时间请关注公告'}}</view>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">本期推荐</view>
+    <view wx:if="{{!recommended.length && !loading}}" class="empty">暂无推荐商品</view>
+    <view
+      class="rec-item"
+      wx:for="{{recommended}}"
+      wx:key="id"
+      data-id="{{item.id}}"
+      bindtap="goProduct"
+    >
+      <image class="rec-cover" src="{{item.cover}}" mode="aspectFill" />
+      <view class="rec-meta">
+        <view class="rec-name">{{item.name}}</view>
+        <view class="rec-price">{{item.priceSummary.mainText}}</view>
+        <view class="rec-sub">{{item.priceSummary.subText}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="link" bindtap="goGuide">代购须知</view>
+</view>

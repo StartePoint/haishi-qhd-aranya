@@ -1,1 +1,31 @@
-<view class="page">{{title}}</view>
+<view class="layout">
+  <scroll-view class="side" scroll-y>
+    <view
+      class="side-item {{activeCategoryId === item.id ? 'active' : ''}}"
+      wx:for="{{categories}}"
+      wx:key="id"
+      data-id="{{item.id}}"
+      bindtap="onSelectCategory"
+    >{{item.name}}</view>
+  </scroll-view>
+  <view class="main">
+    <scroll-view class="subs" scroll-x>
+      <view
+        class="sub {{activeSubId === item.id ? 'active' : ''}}"
+        wx:for="{{subCategories}}"
+        wx:key="id"
+        data-id="{{item.id}}"
+        bindtap="onSelectSub"
+      >{{item.name}}</view>
+    </scroll-view>
+    <scroll-view class="list" scroll-y bindscrolltolower="onReachBottom">
+      <product-card
+        wx:for="{{list}}"
+        wx:key="id"
+        item="{{item}}"
+        bind:tapitem="onTapProduct"
+      />
+      <view class="empty" wx:if="{{!list.length}}">暂无商品</view>
+    </scroll-view>
+  </view>
+</view>

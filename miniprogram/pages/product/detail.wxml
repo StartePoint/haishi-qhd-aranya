@@ -1,1 +1,71 @@
-<view class="page">{{title}}</view>
+<view class="page" wx:if="{{product}}">
+  <swiper class="gallery" indicator-dots circular wx:if="{{product.gallery.length}}">
+    <swiper-item wx:for="{{product.gallery}}" wx:key="*this">
+      <image src="{{item}}" mode="aspectFill" class="gallery-img" />
+    </swiper-item>
+  </swiper>
+  <image wx:else class="gallery-img single" src="{{product.cover}}" mode="aspectFill" />
+
+  <view class="block">
+    <view class="name">{{product.name}}</view>
+    <view class="spec" wx:if="{{product.specText}}">规格：{{product.specText}}</view>
+  </view>
+
+  <view class="block fee">
+    <view class="fee-title">费用明细</view>
+    <view class="fee-row">
+      <text>参考价</text>
+      <text>¥{{product.priceSummary.referenceFenText}}</text>
+    </view>
+    <view class="fee-row">
+      <text>代购服务费</text>
+      <text wx:if="{{product.priceSummary.askServiceFee}}">详询客服</text>
+      <text wx:else>¥{{product.priceSummary.serviceFeeFenText}}</text>
+    </view>
+    <view class="fee-hint">{{product.priceSummary.ruleLabel}}</view>
+    <view class="fee-row">
+      <text>运费说明</text>
+      <text class="muted">{{product.shippingNote || '详询客服'}}</text>
+    </view>
+    <view class="fee-total">
+      <text>合计（不含运费）</text>
+      <text class="total">约 ¥{{product.priceSummary.totalFenText}}</text>
+    </view>
+    <view class="fee-note" wx:if="{{product.priceSummary.askServiceFee}}">服务费另询，以下合计仅含参考价</view>
+  </view>
+
+  <view class="block detail" wx:if="{{product.detailHtml}}">
+    <rich-text nodes="{{product.detailHtml}}"></rich-text>
+  </view>
+
+  <view class="bar">
+    <button class="btn ghost" bindtap="copyWechat">复制客服微信</button>
+    <button class="btn primary" bindtap="openForm">我想代购</button>
+  </view>
+</view>
+
+<view class="mask" wx:if="{{showForm}}" bindtap="closeForm"></view>
+<view class="sheet" wx:if="{{showForm}}">
+  <view class="sheet-title">提交代购意向</view>
+  <view class="field">
+    <text>姓名</text>
+    <input data-field="contactName" bindinput="onInput" placeholder="必填" value="{{form.contactName}}" />
+  </view>
+  <view class="field">
+    <text>手机号</text>
+    <input data-field="phone" bindinput="onInput" type="number" placeholder="必填" value="{{form.phone}}" />
+  </view>
+  <view class="field">
+    <text>微信号</text>
+    <input data-field="wechat" bindinput="onInput" placeholder="选填" value="{{form.wechat}}" />
+  </view>
+  <view class="field">
+    <text>数量</text>
+    <input data-field="qty" bindinput="onInput" type="number" value="{{form.qty}}" />
+  </view>
+  <view class="field">
+    <text>备注</text>
+    <input data-field="remark" bindinput="onInput" placeholder="规格偏好、收货城市等" value="{{form.remark}}" />
+  </view>
+  <button class="btn primary full" loading="{{submitting}}" bindtap="submitLead">提交</button>
+</view>
