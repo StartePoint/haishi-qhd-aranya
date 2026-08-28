@@ -9,3 +9,5 @@ miniprogram_npm/
 .idea/
 .vscode/
 .worktrees/
+
+project.private.config.json

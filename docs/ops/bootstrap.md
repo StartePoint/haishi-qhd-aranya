@@ -1,21 +1,29 @@
 # 海拾阿那亚代购地 · 云开发初始化
 
+## 目录说明
+
+| 目录 | 用途 |
+|------|------|
+| `miniprogram/` | 微信小程序（用户端） |
+| `server/` | 服务端：云函数、共享逻辑、脚本 |
+| `admin/` | 后端管理 Web 页面 |
+
 ## 1. 准备
 
 1. 注册微信小程序，拿到 AppID  
 2. 开通「云开发」，创建环境，记下 **环境 ID**  
 3. 修改：
    - `miniprogram/app.js` 中 `wx.cloud.init({ env: '环境ID' })`
-   - `project.config.json` 中 `appid`
+   - `project.config.json` 中 `appid`（`cloudfunctionRoot` 已指向 `server/cloudfunctions/`）
    - `admin/.env`：`VITE_CLOUDBASE_ENV=环境ID`
 
 ## 2. 同步公共模块并上传云函数
 
 ```bash
-node scripts/sync-common.js
+node server/scripts/sync-common.js
 ```
 
-在微信开发者工具中右键上传以下云函数（先对各目录执行 `npm install`）：
+在微信开发者工具中打开本仓库根目录，对 `server/cloudfunctions/` 下各函数右键上传（先对各目录执行 `npm install`）：
 
 - `login`
 - `catalog`
@@ -80,6 +88,6 @@ npm run dev
 ## 7. 费用单测
 
 ```bash
-cd shared
+cd server/shared
 node --test fee.test.js
 ```
