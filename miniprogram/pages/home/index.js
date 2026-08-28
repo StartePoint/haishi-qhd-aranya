@@ -1,4 +1,4 @@
-const { call } = require('../../utils/cloud')
+const { request } = require('../../utils/http')
 
 Page({
   data: {
@@ -15,7 +15,7 @@ Page({
   async loadHome() {
     this.setData({ loading: true })
     try {
-      const data = await call('catalog', { action: 'home' })
+      const data = await request('/catalog/home')
       this.setData({
         announcementTitle: data.announcementTitle || '',
         announcementContent: data.announcementContent || '',

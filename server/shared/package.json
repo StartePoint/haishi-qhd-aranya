@@ -1,7 +1,0 @@
-{
-  "name": "haishi-shared",
-  "private": true,
-  "scripts": {
-    "test": "node --test fee.test.js"
-  }
-}

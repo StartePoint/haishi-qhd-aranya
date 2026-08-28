@@ -1,6 +1,5 @@
 {
   "miniprogramRoot": "miniprogram/",
-  "cloudfunctionRoot": "server/cloudfunctions/",
   "setting": {
     "es6": true,
     "minified": true,

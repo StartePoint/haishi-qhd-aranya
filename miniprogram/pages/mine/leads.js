@@ -1,5 +1,4 @@
-const { call } = require('../../utils/cloud')
-const { fenToYuanText } = require('../../utils/format')
+const { request } = require('../../utils/http')
 
 const STATUS_MAP = {
   new: '新询价',
@@ -19,7 +18,9 @@ Page({
   async loadList() {
     this.setData({ loading: true })
     try {
-      const data = await call('lead', { action: 'mine' })
+      const app = getApp()
+      if (!app.globalData.openidReady) await app.ensureLogin()
+      const data = await request('/leads/mine', { auth: true })
       const list = (data.list || []).map((item) => ({
         ...item,
         statusText: STATUS_MAP[item.status] || item.status,

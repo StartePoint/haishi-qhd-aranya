@@ -1,4 +1,4 @@
-const { call } = require('../../utils/cloud')
+const { request } = require('../../utils/http')
 
 Page({
   data: {
@@ -11,7 +11,7 @@ Page({
   },
   async loadArticle(type) {
     try {
-      const data = await call('catalog', { action: 'article', type })
+      const data = await request(`/catalog/article?type=${type}`)
       this.setData({
         title: data.title || '',
         content: data.content || '暂无内容'

@@ -1,4 +1,4 @@
-const { call } = require('../../utils/cloud')
+const { request } = require('../../utils/http')
 
 Page({
   data: {
@@ -10,13 +10,9 @@ Page({
   },
   async loadCfg() {
     try {
-      const data = await call('catalog', { action: 'home' })
-      this.setData({
-        customerWechat: data.customerWechat || ''
-      })
-    } catch (e) {
-      // ignore
-    }
+      const data = await request('/catalog/home')
+      this.setData({ customerWechat: data.customerWechat || '' })
+    } catch (e) {}
   },
   goLeads() {
     wx.navigateTo({ url: '/pages/mine/leads' })

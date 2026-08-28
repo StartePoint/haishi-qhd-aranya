@@ -9,5 +9,9 @@ miniprogram_npm/
 .idea/
 .vscode/
 .worktrees/
-
 project.private.config.json
+server/.venv/
+server/data/
+**/__pycache__/
+.pytest_cache/
+*.db

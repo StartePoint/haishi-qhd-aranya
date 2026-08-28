@@ -1,4 +1,4 @@
-const { call } = require('../../utils/cloud')
+const { request } = require('../../utils/http')
 
 Page({
   data: {
@@ -16,7 +16,7 @@ Page({
   },
   async loadCategories() {
     try {
-      const data = await call('catalog', { action: 'categories' })
+      const data = await request('/catalog/categories')
       const categories = data.list || []
       const activeCategoryId = categories[0] ? categories[0].id : ''
       this.setData({ categories, activeCategoryId })
@@ -40,13 +40,11 @@ Page({
     if (!activeCategoryId || loading) return
     this.setData({ loading: true })
     try {
-      const data = await call('catalog', {
-        action: 'products',
-        categoryId: activeCategoryId,
-        subCategoryId: activeSubId || undefined,
-        page: reset ? 1 : page,
-        pageSize: 20
-      })
+      let path = `/catalog/products?category_id=${activeCategoryId}&page=${
+        reset ? 1 : page
+      }&page_size=20`
+      if (activeSubId) path += `&sub_category_id=${activeSubId}`
+      const data = await request(path)
       const nextList = reset ? data.list : list.concat(data.list || [])
       this.setData({
         subCategories: data.subCategories || [],

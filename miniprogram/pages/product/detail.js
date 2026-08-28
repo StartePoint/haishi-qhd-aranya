@@ -1,5 +1,4 @@
-const { call } = require('../../utils/cloud')
-const { fenToYuanText } = require('../../utils/format')
+const { request } = require('../../utils/http')
 
 Page({
   data: {
@@ -21,25 +20,11 @@ Page({
   },
   async loadDetail() {
     try {
-      const product = await call('catalog', {
-        action: 'detail',
-        productId: this.data.id
-      })
-      const ps = product.priceSummary || {}
-      const { fenToYuanText } = require('../../utils/format')
-      product.priceSummary = {
-        ...ps,
-        referenceFenText: fenToYuanText(ps.referenceFen),
-        serviceFeeFenText: fenToYuanText(ps.serviceFeeFen),
-        totalFenText: fenToYuanText(ps.totalFen)
-      }
+      const product = await request(`/catalog/products/${this.data.id}`)
       this.setData({ product })
     } catch (e) {
       wx.showToast({ title: e.message || '加载失败', icon: 'none' })
     }
-  },
-  fen(v) {
-    return fenToYuanText(v)
   },
   openForm() {
     this.setData({ showForm: true })
@@ -63,11 +48,14 @@ Page({
     if (this.data.submitting) return
     this.setData({ submitting: true })
     try {
-      const data = await call('lead', {
-        action: 'create',
-        productId: this.data.id,
-        ...this.data.form,
-        qty: Number(this.data.form.qty) || 1
+      const data = await request('/leads', {
+        method: 'POST',
+        auth: true,
+        data: {
+          productId: Number(this.data.id),
+          ...this.data.form,
+          qty: Number(this.data.form.qty) || 1
+        }
       })
       this.setData({ showForm: false, submitting: false })
       wx.showModal({
@@ -87,14 +75,5 @@ Page({
       return
     }
     wx.setClipboardData({ data: wxid })
-  },
-  openWorkWechat() {
-    const url =
-      this.data.product && this.data.product.customerWorkWechatUrl
-    if (!url) {
-      wx.showToast({ title: '暂未配置企微链接', icon: 'none' })
-      return
-    }
-    wx.setClipboardData({ data: url })
   }
 })
