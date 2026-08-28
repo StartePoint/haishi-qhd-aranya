@@ -1,0 +1,4 @@
+{
+  "desc": "海拾阿那亚代购地",
+  "rules": [{ "action": "allow", "page": "*" }]
+}
