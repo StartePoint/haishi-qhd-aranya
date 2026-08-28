@@ -184,6 +184,9 @@ haishi-qhd-anaya/
 | GET | `/catalog/article` | 无 | query: type=guide\|about |
 | POST | `/leads` | 用户 JWT | 创建询价 |
 | GET | `/leads/mine` | 用户 JWT | 我的询价 |
+| PUT | `/auth/profile` | 用户 JWT | 可选更新 nickname/avatar；一期「我的」无授权则显示占位名 |
+
+分页约定：`page` 从 1 起，默认 `page_size=20`，响应 `{ list, total, page, page_size }`；商品列表按 `sort` 升序。
 
 ### 7.2 管理端
 
@@ -195,10 +198,11 @@ haishi-qhd-anaya/
 | GET/POST | `/admin/sub-categories` | 依赖 category_id |
 | PUT | `/admin/sub-categories/<id>` | |
 | GET/POST | `/admin/products` | |
-| GET/PUT | `/admin/products/<id>` | 含 fee 覆盖 |
+| GET/PUT | `/admin/products/<id>` | 含 fee 覆盖；`fee_rule: null` 表示删除商品覆盖、回退品类默认 |
 | PUT | `/admin/categories/<id>/fee-rule` | 品类默认费用 |
+| DELETE | `/admin/products/<id>/fee-rule` | 清除商品费用覆盖 |
 | GET/PUT | `/admin/configs` | 批量读写配置 |
-| GET | `/admin/leads` | 筛选 status |
+| GET | `/admin/leads` | query：status、product_id、从/至时间（created_at） |
 | PATCH | `/admin/leads/<id>` | 改 status / admin_remark |
 | POST | `/admin/upload` | 图片上传，返回可访问 URL |
 
